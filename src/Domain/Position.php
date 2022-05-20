@@ -91,16 +91,16 @@ class Position
     {
         switch ($this->direction) {
             case 'N':
-                $this->x++;
-                break;
-            case 'E':
                 $this->y++;
                 break;
+            case 'E':
+                $this->x++;
+                break;
             case 'S':
-                $this->x--;
+                $this->y--;
                 break;
             case 'W':
-                $this->y--;
+                $this->x--;
                 break;
         }
     }
@@ -112,22 +112,22 @@ class Position
 
         switch ($this->direction) {
             case 'N':
-                $x++;
-                break;
-            case 'E':
                 $y++;
                 break;
+            case 'E':
+                $x++;
+                break;
             case 'S':
-                $x--;
+                $y--;
                 break;
             case 'W':
-                $y--;
+                $x--;
                 break;
         }
     }
 
     public function toString()
     {
-        return $this->getX() . ' ' . $this->getY() . ' ' . $this->getDirection();
+        return $this->x . ' ' . $this->y . ' ' . $this->direction;
     }
 }
