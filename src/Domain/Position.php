@@ -50,4 +50,84 @@ class Position
             throw new PositionInvalidException('Invalid position data.');
         }
     }
+
+    public function turnRight()
+    {
+        switch ($this->direction) {
+            case 'N':
+                $this->direction = 'E';
+                break;
+            case 'E':
+                $this->direction = 'S';
+                break;
+            case 'S':
+                $this->direction = 'W';
+                break;
+            case 'W':
+                $this->direction = 'N';
+                break;
+        }
+    }
+
+    public function turnLeft()
+    {
+        switch ($this->direction) {
+            case 'N':
+                $this->direction = 'W';
+                break;
+            case 'E':
+                $this->direction = 'N';
+                break;
+            case 'S':
+                $this->direction = 'E';
+                break;
+            case 'W':
+                $this->direction = 'S';
+                break;
+        }
+    }
+
+    public function move()
+    {
+        switch ($this->direction) {
+            case 'N':
+                $this->x++;
+                break;
+            case 'E':
+                $this->y++;
+                break;
+            case 'S':
+                $this->x--;
+                break;
+            case 'W':
+                $this->y--;
+                break;
+        }
+    }
+
+    public function futureMove(&$x, &$y)
+    {
+        $x = $this->x;
+        $y = $this->y;
+
+        switch ($this->direction) {
+            case 'N':
+                $x++;
+                break;
+            case 'E':
+                $y++;
+                break;
+            case 'S':
+                $x--;
+                break;
+            case 'W':
+                $y--;
+                break;
+        }
+    }
+
+    public function toString()
+    {
+        return $this->getX() . ' ' . $this->getY() . ' ' . $this->getDirection();
+    }
 }

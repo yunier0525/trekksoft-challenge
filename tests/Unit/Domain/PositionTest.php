@@ -21,6 +21,63 @@ class PositionTest extends TestCase
         $this->assertEquals($x, $position->getX());
         $this->assertEquals($y, $position->getY());
         $this->assertEquals($d, $position->getDirection());
+
+        $futureX = -1;
+        $futureY = -1;
+        $position->futureMove($futureX, $futureY);
+        $this->assertEquals(4, $futureX);
+        $this->assertEquals(7, $futureY);
+
+        $position->turnLeft();
+        $this->assertEquals('N', $position->getDirection());
+        $position->move();
+        $this->assertEquals(5, $position->getX());
+        $this->assertEquals($y, $position->getY());
+
+
+        $position->turnLeft();
+        $this->assertEquals('W', $position->getDirection());
+        $position->move();
+        $this->assertEquals(5, $position->getX());
+        $this->assertEquals(5, $position->getY());
+
+        $position->turnLeft();
+        $this->assertEquals('S', $position->getDirection());
+        $position->move();
+        $this->assertEquals(4, $position->getX());
+        $this->assertEquals(5, $position->getY());
+
+        $position->turnLeft();
+        $this->assertEquals('E', $position->getDirection());
+        $position->move();
+        $this->assertEquals(4, $position->getX());
+        $this->assertEquals(6, $position->getY());
+
+        $position->turnRight();
+        $this->assertEquals('S', $position->getDirection());
+        $position->move();
+        $this->assertEquals(3, $position->getX());
+        $this->assertEquals(6, $position->getY());
+
+        $position->turnRight();
+        $this->assertEquals('W', $position->getDirection());
+        $position->move();
+        $this->assertEquals(3, $position->getX());
+        $this->assertEquals(5, $position->getY());
+
+        $position->turnRight();
+        $this->assertEquals('N', $position->getDirection());
+        $position->move();
+        $this->assertEquals(4, $position->getX());
+        $this->assertEquals(5, $position->getY());
+
+        $position->turnRight();
+        $this->assertEquals('E', $position->getDirection());
+        $position->move();
+        $this->assertEquals(4, $position->getX());
+        $this->assertEquals(6, $position->getY());
+
+        $this->assertEquals('4 6 E', $position->toString());
     }
 
     public function testPositionException()
