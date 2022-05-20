@@ -56,4 +56,13 @@ class Instructions
             );
         }
     }
+
+    public function getInstructionsExecuted()
+    {
+        if ($this->step < 0) {
+            return [];
+        }
+
+        return array_slice($this->getInstructions(), 0, $this->step + 1);
+    }
 }

@@ -20,6 +20,14 @@ class InstructionsTest extends TestCase
 
         $this->assertEquals(str_split($instructionsString), $instructions->getInstructions());
         $this->assertEquals($instructionsArray, $instructionsA->getInstructions());
+
+        $instructions->next();
+        $instructions->next();
+        $instructions->next();
+        $instructions->next();
+        $instructions->next();
+        $instructions->next();
+        $this->assertEquals(['R', 'L', 'M', 'R', 'L', 'M'], $instructions->getInstructionsExecuted());
     }
 
     public function testInstructionsExceptions()
