@@ -7,4 +7,5 @@ COPY . /console
 
 WORKDIR /console
 
-RUN composer install --no-dev && docker-php-ext-install pcntl
+RUN apt-get update && apt-get install -y git zip unzip
+RUN docker-php-ext-install pcntl
