@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
+use App\Domain\Exceptions\RoverCannotMoveException;
 use App\Domain\Exceptions\RoverInvalidMissionConfigException;
 
 class Rover
@@ -31,7 +32,7 @@ class Rover
         return $this->position;
     }
 
-    public function getInstructions()
+    public function getInstructions(): Instructions
     {
         return $this->instructions;
     }
@@ -43,6 +44,43 @@ class Rover
             || $terrain->getHeight() - 1 < $position->getY()
         ) {
             throw new RoverInvalidMissionConfigException();
+        }
+    }
+
+    public function executeInstructions()
+    {
+        // While the mission is not over (EOM = End of mission)
+        $step = $this->instructions->next();
+        while ($step !== 'EOM') {
+            switch ($step) {
+                case 'R':
+                    $this->position->turnRight();
+                    break;
+                case 'L':
+                    $this->position->turnLeft();
+                    break;
+                case 'M':
+                    $this->move();
+                    break;
+            }
+
+            $step = $this->instructions->next();
+        }
+
+        return $this->position->toString();
+    }
+
+    public function move()
+    {
+        $x = -1;
+        $y = -1;
+
+        $this->position->futureMove($x, $y);
+
+        if ($this->terrain->isInsideTerrain($x, $y)) {
+            $this->position->move();
+        } else {
+            throw new RoverCannotMoveException();
         }
     }
 }
