@@ -9,6 +9,7 @@
 ## Build
 ```bash
 docker-compose build
+docker-compose run app composer install
 ```
 
 ## Execute App
@@ -18,7 +19,7 @@ docker-compose run app bin/cli rovers
 
 ## Run tests
 ```bash
-docker-compose  run app vendor/bin/phpunit
+docker-compose run app vendor/bin/phpunit
 ```
 
 # The Challenge
@@ -59,7 +60,7 @@ The output for each rover should be its final co-ordinates and heading.
 1 2 N
 LMLMLMLMM
 3 3 E
-MM RM MR MR RM
+MMRMMRMRRM
 ```
 
 # Expected Output:
