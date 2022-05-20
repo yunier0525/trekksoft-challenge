@@ -42,4 +42,16 @@ class Terrain
             throw new TerrainSizeInvalidException('Invalid terrain size.');
         }
     }
+
+    public function isInsideTerrain($x, $y)
+    {
+        if (
+            $x >= 0 && $x < $this->getWidth()
+            && $y >= 0 && $y < $this->getHeight()
+        ) {
+            return true;
+        }
+
+        return false;
+    }
 }

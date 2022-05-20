@@ -23,6 +23,9 @@ class TerrainTest extends TestCase
         $terrainXs = new Terrain([0, 0]);
         $this->assertEquals(1, $terrainXs->getHeight());
         $this->assertEquals(1, $terrainXs->getHeight());
+
+        $this->assertTrue($terrain->isInsideTerrain(3, 7));
+        $this->assertFalse($terrain->isInsideTerrain(8, 7));
     }
 
     public function testTerrainExceptions()
